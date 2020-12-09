@@ -20,9 +20,6 @@ jobs:
     - name: Config
       run: |
         ls -a
-        echo '----------------------------'
-        cd ..
-        ls -a
         echo "APP_USER=${{ secrets.USER }}" >> user.conf
         echo "APP_PASS=${{ secrets.PASS }}" >> user.conf
         echo "SC_KEY=${{ secrets.SC_KEY }}" >> user.conf
