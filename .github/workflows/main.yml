@@ -20,6 +20,7 @@ jobs:
         repository: 'lkeme/BiliHelper-personal'
     - name: Config
       run: |
+        ls -a
         mv main/user.conf .
         echo "APP_USER=${{ secrets.USER }}" >> user.conf
         echo "APP_PASS=${{ secrets.PASS }}" >> user.conf
