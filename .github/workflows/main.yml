@@ -13,19 +13,17 @@ jobs:
 
     steps:
     - uses: actions/checkout@main
-      with:
-        path: 'main'
     - uses: actions/checkout@main
       with:
         repository: 'lkeme/BiliHelper-personal'
-        path: 'proj'
-    - name: Move cookie file
+    - name: Config
       run: |
-        mv -f main/user.conf proj/conf/
-        echo "APP_USER=${{ secrets.USER }}" >> proj/conf/user.conf
-        echo "APP_PASS=${{ secrets.PASS }}" >> proj/conf/user.conf
-        echo "SC_KEY=${{ secrets.SC_KEY }}" >> proj/conf/user.conf
-        cat proj/conf/user.conf
-        cd proj
-        composer install
-        php index.php
+        echo "APP_USER=${{ secrets.USER }}" >> user.conf
+        echo "APP_PASS=${{ secrets.PASS }}" >> user.conf
+        echo "SC_KEY=${{ secrets.SC_KEY }}" >> user.conf
+        echo user.conf
+		    mv user.conf conf/
+    - name: composer install
+      run: composer install
+    - name: Run
+      run: php index.php
