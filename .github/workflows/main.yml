@@ -13,11 +13,14 @@ jobs:
 
     steps:
     - uses: actions/checkout@main
+      with:
+        path: 'main'
     - uses: actions/checkout@main
       with:
         repository: 'lkeme/BiliHelper-personal'
     - name: Config
       run: |
+        mv main/user.conf .
         echo "APP_USER=${{ secrets.USER }}" >> user.conf
         echo "APP_PASS=${{ secrets.PASS }}" >> user.conf
         echo "SC_KEY=${{ secrets.SC_KEY }}" >> user.conf
