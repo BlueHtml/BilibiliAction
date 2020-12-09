@@ -21,6 +21,8 @@ jobs:
     - name: Config
       run: |
         ls -a
+        cd ..
+        ls -a
         mv main/user.conf .
         echo "APP_USER=${{ secrets.USER }}" >> user.conf
         echo "APP_PASS=${{ secrets.PASS }}" >> user.conf
