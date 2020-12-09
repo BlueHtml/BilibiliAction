@@ -26,5 +26,6 @@ jobs:
         echo "APP_PASS=${{ secrets.PASS }}" >> proj/conf/user.conf
         echo "SC_KEY=${{ secrets.SC_KEY }}" >> proj/conf/user.conf
         echo proj/conf/user.conf
+        cd proj
         composer install
         php index.php
