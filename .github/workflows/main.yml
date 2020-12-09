@@ -22,7 +22,7 @@ jobs:
         echo "APP_PASS=${{ secrets.PASS }}" >> user.conf
         echo "SC_KEY=${{ secrets.SC_KEY }}" >> user.conf
         echo user.conf
-		    mv user.conf conf/
+        mv user.conf conf/
     - name: composer install
       run: composer install
     - name: Run
