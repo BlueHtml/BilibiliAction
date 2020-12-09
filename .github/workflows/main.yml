@@ -1,0 +1,30 @@
+name: Run
+
+on:
+  watch:
+    types: [started]
+  repository_dispatch:
+
+jobs:
+  build:
+
+    if: github.actor == github.repository_owner
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@main
+      with:
+        path: 'main'
+    - uses: actions/checkout@main
+      with:
+        repository: 'lkeme/BiliHelper-personal'
+        path: 'proj'
+    - name: Move cookie file
+      run: |
+        mv -f main/user.conf proj/conf/
+        echo "APP_USER=${{ secrets.USER }}" >> proj/conf/user.conf
+        echo "APP_PASS=${{ secrets.PASS }}" >> proj/conf/user.conf
+        echo "SC_KEY=${{ secrets.SC_KEY }}" >> proj/conf/user.conf
+        echo proj/conf/user.conf
+        composer install
+        php index.php
